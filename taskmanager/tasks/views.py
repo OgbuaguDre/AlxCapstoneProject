@@ -1,11 +1,17 @@
 from django.shortcuts import render
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, generics
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django_filters.rest_framework import FilterSet, filters
 from .models import Task
-from .serializers import TaskSerializer
+from .serializers import TaskSerializer, RegisterSerializer, UserSerializer
 from .permissions import IsOwner
+from rest_framework.authtoken.models import Token
+from rest_framework.permissions import AllowAny
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from rest_framework.views import APIView
+
 
 class TaskFilter(FilterSet):
     status = filters.CharFilter(field_name="status", lookup_expr="exact")
@@ -47,5 +53,22 @@ class TaskViewSet(viewsets.ModelViewSet):
         task.save(update_fields=["status", "completed_at", "updated_at"])
         return Response(TaskSerializer(task).data)
 
-# Create your views here.
+class LoginView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        username = request.data.get("username")
+        password = request.data.get("password")
+        user = authenticate(username=username, password=password)
+
+        if user:
+            token, created = Token.objects.get_or_create(user=user)
+            return Response({"token": token.key, "user": UserSerializer(user).data})
+        return Response({"error": "Invalid Credentials"}, status=status.HTTP_401_UNAUTHORIZED)
+
+# Logout user
+class LogoutView(APIView):
+    def post(self, request):
+        request.user.auth_token.delete()
+        return Response({"message": "Logged out successfully"}, status=status.HTTP_200_OK)
 
