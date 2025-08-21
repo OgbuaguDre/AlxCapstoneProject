@@ -20,11 +20,14 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from tasks.views import TaskViewSet
-from accounts.views import RegisterView, MeView
+from accounts.views import RegisterView, MeView, UserViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
 
 router = DefaultRouter()
 router.register(r"tasks", TaskViewSet, basename="task")
+router.register(r"users", UserViewSet, basename="user")  
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -40,4 +43,7 @@ urlpatterns = [
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
+
+
+
 
