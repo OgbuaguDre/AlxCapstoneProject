@@ -3,18 +3,15 @@ from django.utils import timezone
 from .models import Task
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
+from .models import Task
 
 class TaskSerializer(serializers.ModelSerializer):
-    owner = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = Task
-        fields = [
-            "id", "owner", "title", "description", "due_date",
-            "priority", "status", "completed_at",
-            "created_at", "updated_at",
-        ]
-        read_only_fields = ["status", "completed_at", "created_at", "updated_at"]
+        fields = ['id', 'title', 'description', 'due_date', 'priority', 'status',
+                  'completed_at', 'created_at', 'updated_at', 'owner']
 
     def validate_due_date(self, value):
         if value <= timezone.now():
