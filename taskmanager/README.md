@@ -33,7 +33,7 @@ A backend API built with **Django** and **Django REST Framework (DRF)** that all
 
 ---
 
-## Project Status (ADR-001 Summary)
+## Project Status (So far)
 
 -  Functional requirements for tasks & users implemented.
 -  Database schema with `User` and `Task` models designed.
@@ -50,5 +50,6 @@ A backend API built with **Django** and **Django REST Framework (DRF)** that all
 - **Authentication:** DRF Token Authentication
 
 ---
+
 
 
