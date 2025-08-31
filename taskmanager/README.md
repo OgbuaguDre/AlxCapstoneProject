@@ -4,7 +4,7 @@ A backend API built with **Django** and **Django REST Framework (DRF)** that all
 
 ---
 
-## Features Implemented (So Far)
+## Features Implemented 
 
 - **User Authentication**
   - Registration and login using DRF token authentication.
@@ -33,7 +33,7 @@ A backend API built with **Django** and **Django REST Framework (DRF)** that all
 
 ---
 
-## Project Status (So far)
+## Project Status 
 
 -  Functional requirements for tasks & users implemented.
 -  Database schema with `User` and `Task` models designed.
@@ -49,7 +49,8 @@ A backend API built with **Django** and **Django REST Framework (DRF)** that all
 - **Database:** SQLite (dev), PostgreSQL (planned for production)
 - **Authentication:** DRF Token Authentication
 
----
+
+
 
 
 
