@@ -31,23 +31,12 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include(router.urls)),
 
-    # Auth & Users
-    # path("api/auth/register/", RegisterView.as_view(), name="register"),
+
     path('api/auth/', include('accounts.urls')),
     path("api/auth/login/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/auth/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     
 ]
-
-
-# urlpatterns = [
-
-
-#     path('api/auth/', include('accounts.urls')),
-
-
-#     path('api/tasks/', include('tasks.urls')),
-# ]
 
 
 
