@@ -46,8 +46,9 @@ A backend API built with **Django** and **Django REST Framework (DRF)** that all
 ## Tech Stack
 
 - **Backend:** Python, Django, Django REST Framework
-- **Database:** SQLite (dev), PostgreSQL (planned for production)
+- **Database:** SQLite (dev)
 - **Authentication:** DRF Token Authentication
+
 
 
 
